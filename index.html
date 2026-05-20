@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMINA — Gallery</title>
+  <link rel="stylesheet" href="./Album.css" />
+  <!-- Google Fonts: Display + Body pairing -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">LUMINA</a>
+      <div class="nav-links">
+        <a href="#gallery">Gallery</a>
+        <a href="#footer">About</a>
+        <span class="nav-count" id="navCount">100 photos</span>
+      </div>
+      <!-- Hamburger for mobile -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+      <a href="#footer" onclick="closeMobileMenu()">About</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Your Personal Collection</p>
+      <h1 class="hero-title">Every Shot<br /><em>Tells a Story</em></h1>
+      <p class="hero-sub">100 curated images across 10 categories — browse, filter, explore.</p>
+      <a href="#gallery" class="hero-cta">Open Gallery ↓</a>
+    </div>
+    <!-- Floating preview tiles -->
+    <div class="hero-tiles" aria-hidden="true">
+      <div class="tile t1" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80')"></div>
+      <div class="tile t2" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=300&q=80')"></div>
+      <div class="tile t3" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&q=80')"></div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       GALLERY SECTION
+  ═══════════════════════════════════════════ -->
+  <main class="gallery-section" id="gallery">
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-track">
+        <button class="filter-btn active" data-cat="all">All <span>100</span></button>
+        <button class="filter-btn" data-cat="nature">🌿 Nature <span>10</span></button>
+        <button class="filter-btn" data-cat="architecture">🏛 Architecture <span>10</span></button>
+        <button class="filter-btn" data-cat="business">💼 Business <span>10</span></button>
+        <button class="filter-btn" data-cat="fashion">👗 Fashion <span>10</span></button>
+        <button class="filter-btn" data-cat="food">🍽 Food <span>10</span></button>
+        <button class="filter-btn" data-cat="interiors">🛋 Interiors <span>10</span></button>
+        <button class="filter-btn" data-cat="technology">💻 Technology <span>10</span></button>
+        <button class="filter-btn" data-cat="travel">✈️ Travel <span>10</span></button>
+        <button class="filter-btn" data-cat="animals">🐾 Animals <span>10</span></button>
+        <button class="filter-btn" data-cat="street">🏙 Street <span>10</span></button>
+      </div>
+    </div>
+
+    <!-- Results count -->
+    <div class="results-bar">
+      <span id="resultsCount">Showing 100 photos</span>
+      <div class="view-toggle">
+        <button class="vt-btn active" id="gridBtn" title="Grid View" onclick="setView('grid')">⊞</button>
+        <button class="vt-btn" id="listBtn" title="List View" onclick="setView('list')">☰</button>
+      </div>
+    </div>
+
+    <!-- Image Grid -->
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Cards injected by script.js -->
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       LIGHTBOX MODAL
+  ═══════════════════════════════════════════ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <!-- Backdrop -->
+    <div class="lb-backdrop" id="lbBackdrop"></div>
+
+    <!-- Controls -->
+    <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8592;</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8594;</button>
+
+    <!-- Image container -->
+    <div class="lb-container">
+      <div class="lb-img-wrap">
+        <img class="lb-img" id="lbImg" src="" alt="" />
+        <div class="lb-loader" id="lbLoader"></div>
+      </div>
+      <div class="lb-info">
+        <div class="lb-meta">
+          <span class="lb-cat" id="lbCat"></span>
+          <span class="lb-counter" id="lbCounter"></span>
+        </div>
+        <p class="lb-title" id="lbTitle"></p>
+      </div>
+    </div>
+
+    <!-- Thumbnail strip -->
+    <div class="lb-strip" id="lbStrip"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">LUMINA</span>
+        <p>A personal gallery experience.<br />Every image, perfectly presented.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Categories</h4>
+          <ul>
+            <li>Nature</li><li>Architecture</li><li>Business</li>
+            <li>Fashion</li><li>Food</li>
+          </ul>
+        </div>
+        <div>
+          <h4>&nbsp;</h4>
+          <ul>
+            <li>Interiors</li><li>Technology</li><li>Travel</li>
+            <li>Animals</li><li>Street</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Info</h4>
+          <ul>
+            <li>100 Photos</li>
+            <li>10 Categories</li>
+            <li>Pure HTML/CSS/JS</li>
+            <li>Fully Responsive</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LUMINA Gallery · Built with pure HTML, CSS & JavaScript</span>
+    </div>
+    <div class="footer-bottom">
+        <span>@CodeAlpha-Task 1 [By Barsha Baishakhi Prusty]</span>
+    </div>
+  </footer>
+
+  <script src="./Photos.js"></script>
+</body>
+</html>
