@@ -14,7 +14,7 @@ A sleek, responsive, and interactive Image Gallery built as part of my Frontend 
 
 ## 🌐 Live Demo
 You can view the live, interactive deployment of this project here:  
-👉 **[Insert your GitHub Pages Link Here]**
+👉 **[https://barshabaishakhi-pythonfs.github.io/CodeAlpha_ImageGallery_Task-1/]**
 
 ---
 
